@@ -177,12 +177,12 @@ function exit-script() {
 }
 
 function default_settings() {
-  BRANCH="$stable"
+  BRANCH="15.2"
   VMID=$(get_valid_nextid)
   FORMAT=",efitype=4m"
   MACHINE=""
   DISK_CACHE="cache=writethrough,"
-  HN="haos$stable"
+  HN="haos15.2"
   CPU_TYPE=" -cpu host"
   CORE_COUNT="2"
   RAM_SIZE="4096"
@@ -192,7 +192,7 @@ function default_settings() {
   MTU=""
   START_VM="yes"
   METHOD="default"
-  var_version="${stable}"
+  var_version="15.2"
   echo -e "${DGN}Using HAOS Version: ${BGN}${BRANCH}${CL}"
   echo -e "${DGN}Using Virtual Machine ID: ${BGN}${VMID}${CL}"
   echo -e "${DGN}Using Machine Type: ${BGN}i440fx${CL}"
