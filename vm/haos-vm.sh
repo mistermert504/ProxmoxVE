@@ -28,9 +28,6 @@ NSAPP="homeassistant-os"
 var_os="homeassistant"
 DISK_SIZE="32G"
 
-for version in "${VERSIONS[@]}"; do
-  eval "$version=$(curl -fsSL https://raw.githubusercontent.com/home-assistant/version/master/stable.json | grep '"ova"' | cut -d '"' -f 4)"
-done
 YW=$(echo "\033[33m")
 BL=$(echo "\033[36m")
 HA=$(echo "\033[1;34m")
@@ -414,9 +411,9 @@ msg_info "Validating Storage"
 while read -r line; do
   TAG=$(echo $line | awk '{print $1}')
   TYPE=$(echo $line | awk '{printf "%-10s", $2}')
-  if [[ "$line" =~ ^[[:alnum:]] ]]; then
-  FREE=$(echo $line | numfmt --field 4-6 --from-unit=K --to=iec --format %.2f | awk '{printf( "%9sB", $6)}')
-fi
+    if [[ "$line" =~ ^[[:alnum:]] ]]; then
+        FREE=$(echo $line | numfmt --field 4-6 --from-unit=K --to=iec --format %.2f | awk '{printf( "%9sB", $6)}')
+    fi
   ITEM="  Type: $TYPE Free: $FREE "
   OFFSET=2
   if [[ $((${#ITEM} + $OFFSET)) -gt ${MSG_MAX_LENGTH:-} ]]; then
