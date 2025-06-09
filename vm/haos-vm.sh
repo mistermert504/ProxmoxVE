@@ -411,9 +411,10 @@ msg_info "Validating Storage"
 while read -r line; do
   TAG=$(echo $line | awk '{print $1}')
   TYPE=$(echo $line | awk '{printf "%-10s", $2}')
-    if [[ "$line" =~ ^[[:alnum:]] ]]; then
-        FREE=$(echo $line | numfmt --field 4-6 --from-unit=K --to=iec --format %.2f | awk '{printf( "%9sB", $6)}')
-    fi
+  FREE="n/a"
+  if [[ "$line" =~ ^[[:alnum:]] ]]; then
+    FREE=$(echo $line | numfmt --field 4-6 --from-unit=K --to=iec --format %.2f | awk '{printf( "%9sB", $6)}')
+  fi
   ITEM="  Type: $TYPE Free: $FREE "
   OFFSET=2
   if [[ $((${#ITEM} + $OFFSET)) -gt ${MSG_MAX_LENGTH:-} ]]; then
